@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour
     public float despawnTime;
     public float damage;
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        gameObject.SetActive(false);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +24,7 @@ public class Bullet : MonoBehaviour
     public void OnEnable()
     {
         cameraTransform = FindAnyObjectByType<CharacterCameraConstraint>().transform;
-        rb.AddForce(cameraTransform.forward * force, ForceMode.Impulse);
+        rb.AddForce((-1 * gameObject.transform.up) * force, ForceMode.Impulse);
         StartCoroutine(EnabledTime());
     }
 
