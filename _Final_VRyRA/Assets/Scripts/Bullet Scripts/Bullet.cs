@@ -4,26 +4,31 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Rigidbody rb;
-    public Transform cameraTransform;
+    //public Transform cameraTransform;
 
     public float force;
     public float despawnTime;
     public float damage;
 
-    private void OnCollisionEnter(Collision collision)
+    public string type;
+
+    private void OnTriggerEnter(Collider other)
     {
-        gameObject.SetActive(false);
+        StopCoroutine(EnabledTime());
+        DespawnSteps();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        if(rb == null) rb = GetComponent<Rigidbody>();
     }
 
     public void OnEnable()
     {
-        cameraTransform = FindAnyObjectByType<CharacterCameraConstraint>().transform;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        //cameraTransform = FindAnyObjectByType<CharacterCameraConstraint>().transform;
         rb.AddForce((-1 * gameObject.transform.up) * force, ForceMode.Impulse);
         StartCoroutine(EnabledTime());
     }
@@ -31,6 +36,11 @@ public class Bullet : MonoBehaviour
     IEnumerator EnabledTime()
     {
         yield return new WaitForSeconds(despawnTime);
+        DespawnSteps();
+    }
+
+    private void DespawnSteps()
+    {
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         gameObject.SetActive(false);
