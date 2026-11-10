@@ -130,3 +130,7 @@ MonoBehaviour:
   channelR: 0
   channelG: 0
   channelB: 0
+  uEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isActivated_G: 0
