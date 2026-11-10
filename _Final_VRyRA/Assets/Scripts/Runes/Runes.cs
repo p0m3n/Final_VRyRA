@@ -6,10 +6,12 @@ public class Runes : MonoBehaviour
     [SerializeField] private Renderer runeRenderer;
     [SerializeField] private Color newRuneColor;
     [SerializeField] private float channelR, channelG, channelB;
+    public bool isActivated;
 
     private void Start()
     {
         runeRenderer = GetComponent<Renderer>();
+        isActivated = false;
     }
 
     public void StoneShoted()
