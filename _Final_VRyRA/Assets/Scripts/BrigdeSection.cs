@@ -10,16 +10,33 @@ public class BridgeSection : MonoBehaviour
     [SerializeField] private float riseTime = 0.8f;
 
     private Vector3 finalPosition;
+    private bool isInitialized;
+    private bool isAppearing;
 
     private void Awake()
     {
-        finalPosition = transform.position;
-        gameObject.SetActive(false);
+        SaveFinalPosition();
+
+        // Si Awake corre porque Appear() acaba de prenderlo, no hay que volver a esconderlo
+        if (!isAppearing) gameObject.SetActive(false);
     }
 
-    // Conectar al onActivated del cristal que controla esta sección
+    private void SaveFinalPosition()
+    {
+        if (isInitialized) return;
+
+        finalPosition = transform.position;
+        isInitialized = true;
+    }
+
+    // Conectar al onActivated del cristal que controla esta sección.
+    // ContextMenu: en Play, los tres puntitos del componente -> "Appear" para probar sin disparar.
+    [ContextMenu("Appear")]
     public void Appear()
     {
+        isAppearing = true;
+        SaveFinalPosition();
+
         // Una corrutina no puede iniciar en un objeto apagado: primero se activa
         gameObject.SetActive(true);
         StartCoroutine(RiseRoutine());

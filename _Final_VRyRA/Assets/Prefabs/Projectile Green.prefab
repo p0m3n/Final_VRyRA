@@ -5008,8 +5008,8 @@ Transform:
   m_GameObject: {fileID: 5904508164954057173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.089, y: 0.031, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7900911553765518128}
@@ -5138,7 +5138,7 @@ MonoBehaviour:
   force: 30
   despawnTime: 2
   damage: 0
-  type: green
+  type: 0
 --- !u!1 &7153529090310275671
 GameObject:
   m_ObjectHideFlags: 0

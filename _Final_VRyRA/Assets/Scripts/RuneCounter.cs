@@ -4,26 +4,36 @@ using UnityEngine.Events;
 // Cuenta cuántas runas se activaron y avisa cuando se llega a la meta.
 // Solo cuenta: no mueve puertas ni prende luces. Lo que pase al completarse
 // se conecta en el Inspector con onCompleted.
-// Lo reutilizaremos en la zona 5 para contar las bolitas del Lich en cada fase.
+// Es la clase base de TimedRuneCounter (misma idea, pero con tiempo límite).
 public class RuneCounter : MonoBehaviour
 {
-    [SerializeField] private int requiredCount = 3;
+    [SerializeField] protected int requiredCount = 3;
 
     public UnityEvent onCompleted;
 
-    private int currentCount;
+    protected int currentCount;
+    protected bool isCompleted;
 
     // Conectar al onActivated de cada runa
-    public void AddOne()
+    public virtual void AddOne()
     {
+        if (isCompleted) return;
+
         currentCount++;
 
-        if (currentCount == requiredCount)
-            onCompleted.Invoke();
+        if (currentCount >= requiredCount)
+            Complete();
     }
 
-    public void ResetCounter()
+    protected virtual void Complete()
+    {
+        isCompleted = true;
+        onCompleted.Invoke();
+    }
+
+    public virtual void ResetCounter()
     {
         currentCount = 0;
+        isCompleted = false;
     }
 }
