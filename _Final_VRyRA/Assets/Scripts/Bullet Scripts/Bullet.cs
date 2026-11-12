@@ -10,10 +10,14 @@ public class Bullet : MonoBehaviour
     public float despawnTime;
     public float damage;
 
-    public string type;
+    public EnergyType type;
 
     private void OnTriggerEnter(Collider other)
     {
+        // Le entrega su energía a cualquier objeto que sepa recibirla
+        if (other.TryGetComponent(out IEnergyReceiver receiver))
+            receiver.ReceiveEnergy(type);
+
         StopCoroutine(EnabledTime());
         DespawnSteps();
     }
@@ -21,7 +25,7 @@ public class Bullet : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        if(rb == null) rb = GetComponent<Rigidbody>();
+        if (rb == null) rb = GetComponent<Rigidbody>();
     }
 
     public void OnEnable()
