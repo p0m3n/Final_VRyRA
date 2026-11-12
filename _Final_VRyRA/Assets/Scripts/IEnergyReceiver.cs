@@ -1,16 +1,7 @@
-using UnityEngine;
-
-public class IEnergyReceiber : MonoBehaviour
+// Cualquier objeto que pueda recibir un disparo de energía implementa esta interfaz:
+// runas, libros, bolitas del Lich, el Lich mismo...
+// La bala no necesita saber QUÉ objeto es, solo que sabe recibir energía.
+public interface IEnergyReceiver
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void ReceiveEnergy(EnergyType energy);
 }

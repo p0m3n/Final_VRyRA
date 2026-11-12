@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7712104848613770437}
   - component: {fileID: 729322596218574210}
   - component: {fileID: 6822723272512380567}
-  - component: {fileID: 8075449572497367836}
+  - component: {fileID: 6689733929322656307}
   m_Layer: 0
   m_Name: RunesPink
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7601471, y: 1.9346335, z: 0.54396176}
   m_Center: {x: 0, y: 0.000000029802322, z: -0.000000014901161}
---- !u!114 &8075449572497367836
+--- !u!114 &6689733929322656307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,15 +122,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5314385208428044077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93857c3cf007b1747b22fada50b46b81, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a4eaef7a9be4f04e9665bc0fffaac19, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Rune_Pink
-  runeRenderer: {fileID: 729322596218574210}
-  newRuneColor: {r: 1, g: 1, b: 1, a: 0}
-  channelR: 0
-  channelG: 0
-  channelB: 0
-  uEvent:
+  m_EditorClassIdentifier: Assembly-CSharp::Rune
+  acceptedEnergy: 1
+  singleUse: 1
+  onActivated:
     m_PersistentCalls:
       m_Calls: []
-  isActivated_P: 0
+  onRejected:
+    m_PersistentCalls:
+      m_Calls: []
+  runeRenderer: {fileID: 0}
+  activatedColor: {r: 1, g: 1, b: 1, a: 1}
+  rejectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  flashTime: 0.15
+  activatedClip: {fileID: 0}
+  rejectedClip: {fileID: 0}

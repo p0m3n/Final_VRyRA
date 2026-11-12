@@ -1,16 +1,7 @@
-using UnityEngine;
-
-public class EnergyType : MonoBehaviour
+// Los dos tipos de energía del juego.
+// Un enum en vez de texto evita errores como escribir "Pink" en lugar de "pink".
+public enum EnergyType
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    Green,
+    Pink
 }

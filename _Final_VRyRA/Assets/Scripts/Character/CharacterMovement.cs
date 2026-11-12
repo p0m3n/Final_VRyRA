@@ -6,7 +6,10 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private InputActionReference btnAction_Move;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float gravity = -9.81f;
+
     private CharacterController controller;
+    private float verticalVelocity;
 
     private void Start()
     {
@@ -24,9 +27,21 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
+        // Mientras reaparece, PlayerRespawn apaga el controller: no moverlo
+        if (!controller.enabled) return;
+
         Vector2 inputVector = btnAction_Move.action.ReadValue<Vector2>();
         Vector3 move = (transform.right * inputVector.x) + (transform.forward * inputVector.y);
 
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        // Gravedad: sin esto el jugador camina sobre el vacío
+        if (controller.isGrounded && verticalVelocity < 0f)
+            verticalVelocity = -2f; // pequeño empuje hacia abajo para mantenerlo pegado al suelo
+
+        verticalVelocity += gravity * Time.deltaTime;
+
+        Vector3 velocity = move * moveSpeed;
+        velocity.y = verticalVelocity;
+
+        controller.Move(velocity * Time.deltaTime);
     }
 }
