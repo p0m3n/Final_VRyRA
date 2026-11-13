@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 // Va en el mismo objeto que el CharacterController del jugador.
 // Escucha los checkpoints y, cuando algo le pide reaparecer, hace el fundido y lo teletransporta.
@@ -8,6 +9,10 @@ public class PlayerRespawn : MonoBehaviour, IRespawnable
     [SerializeField] private ScreenFader screenFader;
     [SerializeField] private Transform startPoint;
     [SerializeField] private float blackTime = 0.3f;
+
+    // Sirven para cualquier muerte: caer al abismo o quedarse sin vidas con el jefe
+    public UnityEvent onRespawnStarted;   // sonido de muerte
+    public UnityEvent onRespawnFinished;  // sonido de reaparecer (opcional)
 
     private CharacterController controller;
     private Vector3 spawnPosition;
@@ -48,6 +53,7 @@ public class PlayerRespawn : MonoBehaviour, IRespawnable
     private IEnumerator RespawnRoutine()
     {
         isRespawning = true;
+        onRespawnStarted.Invoke();
 
         if (screenFader != null) yield return screenFader.FadeOut();
 
@@ -62,5 +68,6 @@ public class PlayerRespawn : MonoBehaviour, IRespawnable
         if (screenFader != null) yield return screenFader.FadeIn();
 
         isRespawning = false;
+        onRespawnFinished.Invoke();
     }
 }

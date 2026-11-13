@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7000199244810553164}
   - component: {fileID: 4595737133427660261}
   - component: {fileID: 2003756958589348868}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4847,7 +4847,7 @@ GameObject:
   - component: {fileID: 6464684384343378212}
   - component: {fileID: 8031619221259281266}
   - component: {fileID: 4498412369574787255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9695,7 +9695,7 @@ GameObject:
   - component: {fileID: 1675744914511912089}
   - component: {fileID: 6996503953153353267}
   - component: {fileID: 183273210869503060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Projectile Pink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9852,7 +9852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7156175681345227004}
   - component: {fileID: 6000797013904741541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
