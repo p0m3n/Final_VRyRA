@@ -1,0 +1,55 @@
+DUNGEON: THE LAST CORE - EFECTOS DE SONIDO
+Generados por síntesis (libres de derechos). WAV, 44.1 kHz, mono.
+
+CÓMO IMPORTARLOS EN UNITY
+- Arrastra la carpeta completa a Assets.
+- Selecciona todos los clips y en el Inspector:
+    Force To Mono: ✓
+    Load Type: Decompress On Load (son cortos)
+  y presiona Apply.
+
+====================================================================
+01_Cristales
+--------------------------------------------------------------------
+cristal_activar_verde   -> Rune verde: Activated Clip
+cristal_romper_rosa     -> Rune rosa: Activated Clip
+                           (también las bolitas del jefe y la coraza)
+cristal_rechazo         -> TODOS los Rune: Rejected Clip
+
+02_Libros
+--------------------------------------------------------------------
+libro_nota_tierra       -> Book Tierra: Note   (Do)
+libro_nota_fuego        -> Book Fuego: Note    (Mi)
+libro_nota_hielo        -> Book Hielo: Note    (Sol)
+libro_nota_aire         -> Book Aire: Note     (La)
+libro_rechazo           -> todos los Book: Rejected Clip
+  Las 4 notas suenan bien juntas en cualquier orden: ayuda a memorizar.
+
+03_Puzzle
+--------------------------------------------------------------------
+puerta_abrir            -> AudioSource de cada puerta -> Play
+puente_subir            -> AudioSource de cada Puente -> Play
+                           (en el evento del cristal, DEBAJO de Appear)
+reloj_tictac_LOOP       -> AudioSource del Contador Puerta (Loop ✓)
+                           On Timer Started -> Play
+                           On Completed / On Timeout -> Stop
+                           Dura exactamente 1 s: se repite sin corte.
+
+04_Jugador
+--------------------------------------------------------------------
+paso_01 ... paso_04     -> FootstepAudio: Footstep Clips (los 4)
+disparo_verde           -> InputsTesting: Shoot Green Clip
+disparo_rosa            -> InputsTesting: Shoot Pink Clip
+jugador_dano            -> PlayerHealth: On Damaged -> PlayOneShot
+jugador_muerte          -> PlayerRespawn: On Respawn Started -> PlayOneShot
+jugador_reaparecer      -> PlayerRespawn: On Respawn Finished -> PlayOneShot
+
+05_Jefe  (todos con PlayOneShot en el AudioSource de GruntHP)
+--------------------------------------------------------------------
+jefe_aviso_ataque       -> On Telegraph   (dura 1 s = Telegraph Time)
+jefe_disparo            -> On Shoot
+jefe_golpe_verde        -> On Hit
+jefe_rechazo            -> On Rejected
+jefe_aturdido           -> On Stunned
+jefe_rugido_fase        -> On Recovered   (también suena al empezar la pelea)
+jefe_derrota            -> On Defeated
