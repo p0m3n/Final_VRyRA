@@ -46,21 +46,40 @@ public class BookPuzzle : MonoBehaviour
             book.OnShot -= HandleBookShot;
     }
 
-    // Una secuencia al azar del largo de la ronda más larga, sin repetir el mismo libro dos veces seguidas.
+    // Secuencia: primero TODOS los libros barajados (cada uno aparece una vez),
+    // así la ronda final siempre usa los 4. Algoritmo Fisher-Yates.
     // Cada ronda usa el inicio de la misma secuencia: 2 libros, luego 3, luego 4.
     private void GenerateSequence()
     {
         int maxLength = roundLengths[roundLengths.Length - 1];
         sequence = new int[maxLength];
 
+        int[] shuffled = new int[books.Length];
+        for (int i = 0; i < books.Length; i++)
+            shuffled[i] = i;
+
+        for (int i = shuffled.Length - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]);
+        }
+
         for (int i = 0; i < maxLength; i++)
         {
+            if (i < shuffled.Length)
+            {
+                sequence[i] = shuffled[i];
+                continue;
+            }
+
+            // Si alguna vez las rondas son más largas que el número de libros,
+            // el resto se elige al azar sin repetir el libro anterior
             int index;
             do
             {
                 index = Random.Range(0, books.Length);
             }
-            while (i > 0 && index == sequence[i - 1]);
+            while (index == sequence[i - 1]);
 
             sequence[i] = index;
         }
@@ -147,7 +166,7 @@ public class BookPuzzle : MonoBehaviour
             book.SetAwake(false);
         }
 
-        // El libro de nigromancia revive: hay que romperlo otra vez para repetir la ronda.
+      
         // Las rondas ya ganadas se conservan (currentRound no se reinicia).
         necroRune.gameObject.SetActive(true);
         necroRune.ResetRune();
