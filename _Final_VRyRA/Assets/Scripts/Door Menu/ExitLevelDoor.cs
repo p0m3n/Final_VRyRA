@@ -3,9 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnterGameDoor : MonoBehaviour
 {
+    public UnityEvent pEvent;
     private int runesActivated;
     [SerializeField] private int requiredRunes;
     [SerializeField] private GameObject pointB;
@@ -24,7 +26,10 @@ public class EnterGameDoor : MonoBehaviour
     {
         runesActivated++;
         if (runesActivated >= requiredRunes)
+        {
+            pEvent.Invoke();
             StartCoroutine(MoveDoor());
+        }
     }
 
     IEnumerator MoveDoor()

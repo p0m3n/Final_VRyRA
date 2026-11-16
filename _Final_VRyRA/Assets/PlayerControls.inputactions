@@ -1072,7 +1072,7 @@
                 {
                     "name": "",
                     "id": "17df57c2-ac5a-4053-baf0-65975c92e3a3",
-                    "path": "<XRController>/{Primary2DAxis}",
+                    "path": "<XRController>{LeftHand}/{Primary2DAxis}",
                     "interactions": "",
                     "processors": "",
                     "groups": ";XR",
