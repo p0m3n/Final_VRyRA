@@ -9838,9 +9838,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Bullet
   rb: {fileID: 0}
-  force: 10
+  force: 7
   despawnTime: 2
-  damage: 0
+  damage: 1
 --- !u!1 &6996858572782853174
 GameObject:
   m_ObjectHideFlags: 0
